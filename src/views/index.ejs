@@ -1,0 +1,66 @@
+<% include partials/header %>
+<title>Home</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">My Website</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+            </ul>
+            <ul class="navbar-nav list-inline">
+                <li class="nav-item">
+                    <a class="nav-link" href="/add">Add Item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><%=currentusername%></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <%if (postitems.length > 0) {%>
+            <ul>
+                <%for (var i=0; i< postitems.length; i++) {%>
+                <%if (postitems[i].isfav) {%>
+                    <li>
+                        <div class="card">
+                            <div class="card-body">
+                                <%= postitems[i].itemname%>
+                                <a class="float-right" href="/removefavourite/<%=postitems[i]._id%>">
+                                    <img src="/images/true.png" alt="true image">
+                                </a>
+                            </div>
+                        </div>
+
+                    </li>
+
+                <%} else {%>
+                    <li>
+                        <div class="card">
+                            <div class="card-body">
+                                <%= postitems[i].itemname%>
+                                <a  class="float-right" href="/addfavourite/<%=postitems[i]._id%>">
+                                    <img src="/images/false.png" alt="false image">
+                                </a>
+                            </div>
+                        </div>
+
+                    </li>
+                <% } %>
+                <%}%>
+            </ul>
+        <%}%>
+
+    </div>
+
+    <% include partials/footer %>
